@@ -1,17 +1,17 @@
 import { createTables } from './config/db'
 import { GenericDAO } from './models/dao/GenericDAO'
 
-import { beneficiario } from './models/entities/Beneficiario'
-import { consulta } from './models/entities/Consulta'
-import { exame } from './models/entities/Exame'
+import { Beneficiario } from './models/entities/Beneficiario'
+import { Consulta } from './models/entities/Consulta'
+import { Exame } from './models/entities/Exame'
 
 
 const run = async () => {
   await createTables()
 
-  const newUser = new beneficiario ('Bob','Rua:casas n:2','999999999',new Date(2000,3,2),'email@email')
-  const dao1 = new GenericDAO(beneficiario)
-  const savedUser = await dao1.save(newUser)
+  const newBeneficiario = new Beneficiario ('Bob','Rua:casas n:2','999999999',new Date(21/2/3))
+  const dao1 = new GenericDAO(Beneficiario)
+  const savedUser = await dao1.save(newBeneficiario)
   console.log(savedUser)
 
  // const newPost = new Post(

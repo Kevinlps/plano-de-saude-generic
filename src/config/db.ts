@@ -12,6 +12,7 @@ export const createTables = async () => {
   const client = await sqlPool.connect()
 
   try {
+    console.log('Creating tables...')
     await client.query('BEGIN')
 
     // Faz tudo que tem que ser feito

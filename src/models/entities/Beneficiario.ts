@@ -1,6 +1,6 @@
 import { Entity } from './Entity'
 
-export class beneficiario extends Entity {
+export class Beneficiario extends Entity {
   nome: string
   dataNascimento: Date
   email?: string
