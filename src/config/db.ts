@@ -12,10 +12,9 @@ export const createTables = async () => {
   const client = await sqlPool.connect()
 
   try {
-    console.log('Creating tables...')
     await client.query('BEGIN')
 
-    // Faz tudo que tem que ser feito
+    
     await client.query(`
         create table if not exists "beneficiario" (
           "id" serial primary key ,
@@ -35,7 +34,7 @@ export const createTables = async () => {
           "dataHorario" timestamp not null,
           "idBeneficiario" integer not null
           references beneficiario(id),
-          "caraterUrgencia" boolean (default false)
+          "caraterUrgencia" boolean default false
       )      
     `)
 
@@ -44,15 +43,16 @@ export const createTables = async () => {
           "id" serial primary key,
           "especialidade" varchar not null,
           "profissionalResponsavel" varchar not null,
-          "dataHorario" datetime not null,
+          "dataHorario" date not null,
           "idBeneficiario" integer not null
           references beneficiario(id),
-          "caraterUrgencia" boolean (default false)
+          "caraterUrgencia" boolean default false
       )      
     `)
 
     await client.query('COMMIT')
   } catch (err) {
+    console.log(err)
     await client.query('ROLLBACK')
   }
 
